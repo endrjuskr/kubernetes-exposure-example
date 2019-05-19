@@ -1,0 +1,36 @@
+buildscript {
+	dependencies {
+		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+	}
+}
+plugins {
+	id 'org.springframework.boot' version '2.2.0.M3'
+	id 'java'
+	id 'idea'
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.docker'
+
+//group = 'com.fancy.example'
+//version = ''
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+docker {
+	dependsOn build
+	name "endrjuskr/fancy-api"
+	files tasks.bootJar.outputs.files.singleFile
+}
