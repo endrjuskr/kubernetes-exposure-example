@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: fancy-api-service
+spec:
+    selector:
+      app: fancy-api
+    ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+    externalIPs:
+      - 10.156.0.31

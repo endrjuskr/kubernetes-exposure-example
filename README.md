@@ -1,6 +1,6 @@
 # Kubernetes Exposure Example
 
-Please go to (blog post)[http://todo.com] to find out more.
+Please go to (blog post)[https://engineerable.dev/kubernetes-avoid-load-balancer] to get more context.
 
 Projects contains following parts:
 * `api` - code for building API
